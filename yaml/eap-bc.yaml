@@ -20,5 +20,5 @@ spec:
   source:
     type: Git
     git:
-      uri: 'http://git.smrc.klab-a/smrc/test-dockerfile.git'
+      uri: 'https://github.com/jaeyullee/dockerbuild-test.git'
   runPolicy: Serial
