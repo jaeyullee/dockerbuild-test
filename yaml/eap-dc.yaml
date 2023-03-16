@@ -1,0 +1,33 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: eap-custom
+spec:
+  replicas: 2
+  template: 
+    metadata:
+      labels:
+        app: eap-custom
+    spec:
+      containers:
+      - name: eap-custom
+        image: eap-custom:latest
+        ports:
+        - containerPort: 9000
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        imagePullPolicy: Always
+  triggers:
+  - type: ConfigChange 
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - eap-custom
+      from:
+        kind: ImageStreamTag
+        name: eap-custom:latest
+    type: ImageChange  
+  strategy:
+    type: Rolling

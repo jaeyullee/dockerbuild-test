@@ -1,0 +1,14 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: eap-custom
+  labels:
+    app: eap-custom
+spec:
+  to:
+    kind: Service
+    name: eap-custom
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None
